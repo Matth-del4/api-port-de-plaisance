@@ -9,6 +9,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const catwayRoutes = require("./routes/catways");
+
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("✅ Connecté à MongoDB"))
@@ -17,6 +19,8 @@ mongoose
 app.get("/", (req, res) => {
   res.json({ message: "API Port de Plaisance - Bienvenue" });
 });
+
+app.use("/catways", catwayRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
