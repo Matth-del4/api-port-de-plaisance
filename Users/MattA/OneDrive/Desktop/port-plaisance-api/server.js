@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const catwayRoutes = require("./routes/catways");
+const reservationRoutes = require("./routes/reservations");
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/catways", catwayRoutes);
+app.use("/", reservationRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
