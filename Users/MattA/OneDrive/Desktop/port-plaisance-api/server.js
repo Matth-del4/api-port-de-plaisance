@@ -12,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 const catwayRoutes = require("./routes/catways");
 const reservationRoutes = require("./routes/reservations");
 const userRoutes = require("./routes/users");
+const authRoutes = require("./routes/auth");
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 app.use("/catways", catwayRoutes);
 app.use("/", reservationRoutes);
 app.use("/users", userRoutes);
+app.use("/", authRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
